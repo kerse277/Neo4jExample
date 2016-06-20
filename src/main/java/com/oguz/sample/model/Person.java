@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
 
 import java.util.HashSet;
@@ -45,13 +46,35 @@ public class Person {
     @Getter
     private String photo;
 
-    @Relationship(type = "ACTED_IN")
-    private Set<Places> actedIn = new HashSet<>();
+    @Getter
+    @Setter
+    private String occupation;
 
-    public Person actedIn(Places places) {
-        actedIn.add(places);
-        places.getActors().add(this);
+    //Work Relationship
+
+    @Relationship(type = "WORK")
+    private Set<Places> work = new HashSet<>();
+
+    public Person work(Places places) {
+        work.add(places);
+        places.getPersons().add(this);
         return null;
     }
 
+    //Friend Relationship
+
+    @Relationship(type = "FRIEND")
+    private Set<Person> friend = new HashSet<>();
+
+    public Person friend(Person person) {
+        friend.add(person);
+        person.getFriend().add(this);
+        return null;
+    }
+
+
+    @Relationship(type = "FRIEND")
+    public Set<Person> getFriend() {
+        return friend;
+    }
 }

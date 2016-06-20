@@ -1,9 +1,7 @@
 package com.oguz.sample.repository;
 
-import com.oguz.sample.model.Customer;
 import com.oguz.sample.model.Person;
 import com.oguz.sample.model.Places;
-import com.oguz.sample.repositoryperson.PersonRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +17,9 @@ public class PersonRepositoryTest {
 
     @Autowired
     private PersonRepository personRepository;
+
+    @Autowired
+    private  PlacesRepository placesRepository;
 
 
     @Test
@@ -41,14 +42,18 @@ public class PersonRepositoryTest {
 
     @Test
     public void relationTest() {
-        Places places = new Places("Film");
-
+        Places places = new Places()
+                .setName("Gazi")
+                .setType("Hospital");
+        Person person2 = new Person()
+                .setName("kerse")
+                .setSurname("mehmet");
         Person person = new Person()
-                .setName("Kerse")
-                .setSurname("Mehmet")
-                .actedIn(places);
+                .setName("Oguz32")
+                .setSurname("Ylmz4")
+                .friend(person2);
+       // placesRepository.save(places);
         personRepository.save(person);
-
     }
 
     @Test
@@ -59,7 +64,7 @@ public class PersonRepositoryTest {
                 .setSurname("kerse");
         personRepository.save(person);
         //findOne
-        person = personRepository.findOne(person.getId());
+       // person = personRepository.findOne(person.getId());
         System.out.println(person.getName());
         //findByName
         person = personRepository.findByName("A1");
@@ -72,8 +77,8 @@ public class PersonRepositoryTest {
     @Test
     public void personRepositoryQueryTest () {
         Person person = new Person();
-       // person = personRepository.getPersonFromName("A1");
-     //   System.out.println(person.getName());
+       person = personRepository.getPersonFromName("A1");
+        System.out.println(person.getName());
     }
 
 }

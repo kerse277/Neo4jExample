@@ -1,4 +1,4 @@
-package com.oguz.sample.repositoryperson;
+package com.oguz.sample.repository;
 
 import com.oguz.sample.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
