@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Random;
+
 /**
  * Created by oguz on 18.06.2016.
  */
@@ -20,15 +22,19 @@ public class PersonRepositoryTest {
 
     @Autowired
     private  PlacesRepository placesRepository;
-
+    Person friendPerson1 = new Person();
+    Person friendPerson2 = new Person();
 
     @Test
     public void testPersonRepositoryInsert () {
+
         personRepository.deleteAll();
         String genders [] = {"M","F"};
         String Hoby [] = {"Music","Art","Play Game"};
-        for(int i= 1; i<1000; i++) {
-        Person person = new Person()
+        Random random = new Random();
+        for(int i= 1; i<200; i++) {
+            int a=random.nextInt(200);
+            Person person = new Person()
                 .setGender(genders[i%2])
                 .setHoby(Hoby[i%3])
                 .setName("A"+i)
@@ -37,6 +43,13 @@ public class PersonRepositoryTest {
                 .setTc("100000000"+i);
         person =personRepository.save(person);
        System.out.println(person.getName());
+        }
+
+        for (int i = 1; i<200; i++) {
+            friendPerson1 = personRepository.findByName("A"+i);
+            friendPerson2 = personRepository.findByName("A"+i+1);
+            for (int j = 1; j<10; j++) {
+            }
         }
     }
 
