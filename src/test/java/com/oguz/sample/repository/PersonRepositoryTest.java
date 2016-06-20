@@ -42,18 +42,33 @@ public class PersonRepositoryTest {
 
     @Test
     public void relationTest() {
-        Places places = new Places()
-                .setName("Gazi")
-                .setType("Hospital");
-        Person person2 = new Person()
-                .setName("kerse")
-                .setSurname("mehmet");
-        Person person = new Person()
-                .setName("Oguz32")
-                .setSurname("Ylmz4")
-                .friend(person2);
-       // placesRepository.save(places);
-        personRepository.save(person);
+        personRepository.deleteAll();
+        Person person1 = new Person()
+                .setName("oguzhan")
+                .setSurname("YILMAZ");
+        personRepository.save(person1);
+        Person person2 = new Person();
+        person2.setName("memo")
+                .setSurname("KERSE");
+        personRepository.save(person2);
+
+        Person p = new Person();
+        p = personRepository.findByName("oguzhan");
+
+        Person p2 = new Person();
+
+
+        p2 = personRepository.findByName("memo");
+        p2.friend(p);
+        p.friend(p2);
+
+        personRepository.save(p);
+        personRepository.save(p2);
+
+        //personRepository.save(person2);
+
+        //personRepository.save(person3);
+
     }
 
     @Test
@@ -77,7 +92,7 @@ public class PersonRepositoryTest {
     @Test
     public void personRepositoryQueryTest () {
         Person person = new Person();
-       person = personRepository.getPersonFromName("A1");
+       person = personRepository.getPersonFromName("Oguz2");
         System.out.println(person.getName());
     }
 

@@ -7,6 +7,7 @@ import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
+import org.neo4j.ogm.cypher.query.SortOrder;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -63,7 +64,7 @@ public class Person {
 
     //Friend Relationship
 
-    @Relationship(type = "FRIEND")
+    @Relationship(type = "FRIEND",direction="BOTH")
     private Set<Person> friend = new HashSet<>();
 
     public Person friend(Person person) {
@@ -73,7 +74,7 @@ public class Person {
     }
 
 
-    @Relationship(type = "FRIEND")
+    @Relationship(type = "FRIEND",direction="BOTH")
     public Set<Person> getFriend() {
         return friend;
     }

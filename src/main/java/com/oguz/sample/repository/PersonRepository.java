@@ -13,10 +13,7 @@ public interface PersonRepository extends GraphRepository<Person> {
     @Query("MATCH (n:Person {name:'Oguz2'}) Return n")
     Person getPersonFromName(String name);
 
-    /*@Query("MATCH (m:ENGINEER)<-[rating:RATED]-(person) WHERE name (m) = {ENGINEER} RETURN rating")
-    Person lookup(String name);
-    @Query(value = "start n=node({self}) match n-[:KNOWS]->other return other")
-    Iterable<Person> friends;*/
+
 
 }
 
