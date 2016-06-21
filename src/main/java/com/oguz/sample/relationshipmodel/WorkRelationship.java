@@ -30,5 +30,5 @@ public class WorkRelationship {
     @Setter
     @EndNode
     private Places endNode;
-
+//
 }
