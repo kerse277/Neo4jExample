@@ -7,4 +7,6 @@ import org.springframework.data.neo4j.repository.GraphRepository;
  * Created by kerse on 20.06.2016.
  */
 public interface PlacesRepository extends GraphRepository<Places> {
+    Places findByName(String name);
+    Places findByType (String type);
 }

@@ -29,5 +29,10 @@ public class FriendRelationship {
     @EndNode
     private Person endNode;
 
+    @Override
+    public String toString () {
+        return String.format("Relation[id=%s, startNode='%s', endNode='%s']", id,
+                startNode, endNode);
+    }
 
 }

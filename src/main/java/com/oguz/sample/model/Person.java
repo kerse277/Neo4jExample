@@ -51,4 +51,10 @@ public class Person {
     @Getter
     @Setter
     private String occupation;
+
+    @Override
+    public String toString () {
+        return String.format("Person[id=%s, name='%s', surname='%s']", id,
+                name, surname);
+    }
 }
