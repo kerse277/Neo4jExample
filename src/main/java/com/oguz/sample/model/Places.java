@@ -26,13 +26,4 @@ public class Places {
     @Setter
     private String type;
 
-
-    @Relationship(type = "WORK", direction = "INCOMING")
-    private Set<Person> persons = new HashSet<>();
-
-
-    @Relationship(type = "WORK", direction = "INCOMING")
-    public Set<Person> getPersons() {
-        return persons;
-    }
 }

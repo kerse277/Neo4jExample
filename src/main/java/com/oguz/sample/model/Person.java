@@ -8,6 +8,7 @@ import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
 import org.neo4j.ogm.cypher.query.SortOrder;
+import org.springframework.context.annotation.Role;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -50,32 +51,4 @@ public class Person {
     @Getter
     @Setter
     private String occupation;
-
-    //Work Relationship
-
-    @Relationship(type = "WORK")
-    private Set<Places> work = new HashSet<>();
-
-    public Person work(Places places) {
-        work.add(places);
-        places.getPersons().add(this);
-        return null;
-    }
-
-    //Friend Relationship
-
-    @Relationship(type = "FRIEND",direction="BOTH")
-    private Set<Person> friend = new HashSet<>();
-
-    public Person friend(Person person) {
-        friend.add(person);
-        person.getFriend().add(this);
-        return null;
-    }
-
-
-    @Relationship(type = "FRIEND",direction="BOTH")
-    public Set<Person> getFriend() {
-        return friend;
-    }
 }
