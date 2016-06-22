@@ -12,26 +12,17 @@ import java.util.List;
  * Created by oguz on 18.06.2016.
  */
 public interface PersonRepository extends GraphRepository<Person> {
+
     Person findByName(String name);
-
-    @Query("MATCH (n:Person {name:'Oguz2'}) Return n")
-    Person getPersonFromName(String name);
-
-
-
-    @Query("MATCH (p:Person { name:'A1' }) RETURN p")
-    Person metric ();
-
-    @Query("MATCH (p:Person)-[r:'name']->(n:HOSPITAL)" +
-            "RETURN p,n")
-    String work ();
-
-    @Query("MATCH p=((:Person{name:{startNode}})-[:RELATIONSHIP*1..2]-(:Person{name:{endNode})) return p")
-    List<Person> matchMetric(@Param("startNode") String startNode, @Param("endNode") String endNode);
-
 
     @Query("MATCH p=((o:Person{name: {nodeName} })-[:FRIEND]-()) return p")
     List<Person> findByFirstDegreeFriend(@Param("nodeName") String nodeNames);
+
+    @Query(" MATCH p=((o:Person{name: {person} })-[:WORK]-(n))\n" +
+            "    MATCH r=((n)-[:WORK]-(t))\n" +
+            "    WHERE NOT (o)-[:FRIEND]-(t) AND NOT o = t\n" +
+            "    RETURN t")
+    List<Person> workNotFriend(@Param("person") String person );
 
 
 }

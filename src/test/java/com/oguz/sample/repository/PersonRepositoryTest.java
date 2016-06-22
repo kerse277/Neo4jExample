@@ -61,18 +61,42 @@ public class PersonRepositoryTest {
 
             friendPerson1 = personRepository.findByName("A"+i);
             for (int j = 1; j<=10; j++) {
-
+                int [] rndm = new int[10];
                 int rondomFriend=random.nextInt(199)+1;
-                if (i != rondomFriend){
+
+                boolean deger=true;
+                for(int k=0;k<rndm.length;k++){
+                    if(rndm[k]==rondomFriend)
+                       deger=false;
+
+                }
+                rndm[j-1]=rondomFriend;
+                if (i != rondomFriend && deger ){
                     friendPerson2 = personRepository.findByName("A"+rondomFriend);
                     FriendRelationship fr = new FriendRelationship();
                     fr.setStartNode(friendPerson1);
                     fr.setEndNode(friendPerson2);
                     fr.setFriendType(friend[i%3]);
+                    FriendRelationship fr2 = new FriendRelationship();
+                    fr2.setStartNode(friendPerson2);
+                    fr2.setEndNode(friendPerson1);
+                    fr2.setFriendType(friend[i%3]);
                     friendRelationshipRepository.save(fr);
+                    friendRelationshipRepository.save(fr2);
                 }
+                deger=true;
             }
         }
+    }
+    @Test
+     public void relaiton(){
+        friendPerson2 = personRepository.findByName("A187");
+        friendPerson1 = personRepository.findByName("A194");
+        FriendRelationship fr = new FriendRelationship();
+        fr.setStartNode(friendPerson2);
+        fr.setEndNode(friendPerson1);
+        fr.setFriendType("Work");
+        friendRelationshipRepository.save(fr);
     }
 
     @Test
@@ -153,11 +177,6 @@ public class PersonRepositoryTest {
         System.out.println("Kayıt Sayısı = " + COUNT);
 
     }
-    @Test
-    public void personRepositoryQueryTest () {
-        Person person = new Person();
-       person = personRepository.getPersonFromName("Oguz2");
-        System.out.println(person.getName());
-    }
+
 
 }

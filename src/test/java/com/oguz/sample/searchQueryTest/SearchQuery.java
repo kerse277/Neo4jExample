@@ -6,6 +6,7 @@ import com.oguz.sample.relationshipmodel.FriendRelationship;
 import com.oguz.sample.relationshipmodel.WorkRelationship;
 import com.oguz.sample.repository.FriendRelationshipRepository;
 import com.oguz.sample.repository.PersonRepository;
+import com.oguz.sample.repository.PlacesRepository;
 import com.oguz.sample.repository.WorkRelationshipRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,6 +33,9 @@ public class SearchQuery {
     @Autowired
     FriendRelationshipRepository friendRelationshipRepository;
 
+    @Autowired
+    PlacesRepository placesRepository;
+
     @Test
     public void nameSearchTest() {
         Person person = new Person();
@@ -41,16 +45,16 @@ public class SearchQuery {
         String searchName = "A3";
         System.out.println("Hoş geldin "+ user +" Aramak istediğiniz kişinin ismini giriniz");
         person = personRepository.findByName(searchName);
-
-        workRelationship = workRelationshipRepository.workSearch(person.getName());
+        Places places = new Places();
+         places= placesRepository.workSearch(person.getName());
 
 
         System.out.println("Aranan kişi'nin adı : " + person.getName() + "\n" +
                 "Aranan kişinin soyadı : " + person.getSurname() + "\n" +
-                "Aranan kişi : " + workRelationship.getWorkType() + " 'de çalışıyor..." + "\n" +
+                "Aranan kişi : " + places.getName() + " 'de çalışıyor..." + "\n" +
                 "Arkadaş ilişkiniz \n");
 
-        for (FriendRelationship friendRelationship: this.friendRelationshipRepository.friendWay(user,searchName)) {
+        for (FriendRelationship friendRelationship: this.friendRelationshipRepository.friendWay(user,2,searchName)) {
             System.out.println(friendRelationship);
         }
     }
@@ -62,7 +66,7 @@ public class SearchQuery {
         if (workRelationshipRepository.findByWorkType(user)==null) {
             System.out.println("iş bulunamadı");
         } else {
-            Places places = workRelationshipRepository.findNodeWorkName(user);
+            Places places = placesRepository.workSearch(user);
             System.out.println("\n isim'e göre iş bulma : " + workRelationship.getWorkType() + "\n" +
                     "Nerede Çalışıyor : " + places.getName());
 

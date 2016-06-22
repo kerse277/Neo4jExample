@@ -31,8 +31,8 @@ public class FriendRelationship {
 
     @Override
     public String toString () {
-        return String.format("Relation[id=%s, startNode='%s', endNode='%s']", id,
-                startNode, endNode);
+        return String.format("Relation[id=%s, startNode='%s', endNode='%s', type='%s']", id,
+                startNode, endNode,friendType);
     }
 
 }
