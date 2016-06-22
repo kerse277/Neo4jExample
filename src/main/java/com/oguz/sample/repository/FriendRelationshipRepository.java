@@ -13,8 +13,9 @@ import java.util.List;
  */
 public interface FriendRelationshipRepository extends GraphRepository<FriendRelationship> {
 
-    @Query("MATCH p=((:Person{name:{startNode}})-[:FRIEND|WORK*1..2]-(:Person{name:{endNode})) return p")
-    List<FriendRelationship> matchMetric(@Param("startNode") String startNode,@Param("endNode") String endNode);
+    @Query("MATCH p=((:Person{name: {startNode} })-[:FRIEND|WORK*1..2]-(:Person{name: {endNode} })) return p")
+    List<FriendRelationship> friendWay(@Param("startNode") String startNode,@Param("endNode") String endNode);
+
 
 
 }

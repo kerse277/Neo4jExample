@@ -43,7 +43,7 @@ public class Query {
         for (Person person: this.personRepository.matchMetric("A1","A2")) {
             System.out.println(person);
         }*/
-        for (FriendRelationship friendRelationship: this.friendRelationshipRepository.matchMetric("A1","A2")) {
+        for (FriendRelationship friendRelationship: this.friendRelationshipRepository.friendWay("A1","A2")) {
             System.out.println(friendRelationship);
         }
         System.out.println();

@@ -30,6 +30,10 @@ public interface PersonRepository extends GraphRepository<Person> {
     List<Person> matchMetric(@Param("startNode") String startNode, @Param("endNode") String endNode);
 
 
+    @Query("MATCH p=((o:Person{name: {nodeName} })-[:FRIEND]-()) return p")
+    List<Person> findByFirstDegreeFriend(@Param("nodeName") String nodeNames);
+
+
 }
 
 
