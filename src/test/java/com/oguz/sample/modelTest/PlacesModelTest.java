@@ -74,7 +74,7 @@ public class PlacesModelTest {
 
     }
     @Test
-    public void insertWorkTest() {
+    public void placesAndWorkRelationInsert() {
         String placesType [] = {"HOSPITAL","ENGINEER OFFICE","SCHOOL","SPORT CLUB"};
         String placesName [] = {"ANKARA HASTANESİ","GAZİ HASTANESİ","HACETTEPE HASTANESİ","BEAM TEKNOLOJİ","ABC TEKNOLOJİ","ABC","TEKNOLOJİ","COMPUTER","GAZİ ÜNİVERSİTESİ","ANKARA ÜNİVERSİTESİ"
                 ,"ORTA DOĞU TEKNİK ÜNİVERSİTESİ","BİLKENT ÜNİVERSİTESİ","SELÇUK ÜNİVERSİTESİ","GALATASARAY","ANKARAGÜCÜ","FENERBAHÇE","BEŞİKTAŞ","SİVASSPOR","İSTANBUL BÜYÜKŞEHİR BELEDİYE SPOR","TRABZON SPOR","KONYA SPROR"};

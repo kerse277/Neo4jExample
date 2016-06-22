@@ -38,12 +38,12 @@ public class Query {
     }
     @Test
     public void metricMatchTest () {
-
+/*
         List<Person> pList;
-        for (Person person: this.personRepository.matchMetric()) {
+        for (Person person: this.personRepository.matchMetric("A1","A2")) {
             System.out.println(person);
-        }
-        for (FriendRelationship friendRelationship: this.friendRelationshipRepository.matchMetric()) {
+        }*/
+        for (FriendRelationship friendRelationship: this.friendRelationshipRepository.matchMetric("A1","A2")) {
             System.out.println(friendRelationship);
         }
         System.out.println();
