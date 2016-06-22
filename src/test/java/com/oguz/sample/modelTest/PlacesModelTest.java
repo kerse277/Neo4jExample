@@ -14,9 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Random;
 
-/**
- * Created by oguz on 21.06.2016.
- */
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PlacesModelTest {
@@ -86,7 +84,7 @@ public class PlacesModelTest {
         String sport [] = {"FOOTBOLLER","DIRECTOR"};
         Random r = new Random();
         int randomSayi,rn2;
-        for (int i = 1; i<=200; i++) {
+        for (int i = 1; i<=200; i=i+2) {
             randomSayi = r.nextInt(1);
             rn2=r.nextInt(placesName.length-1);
             WorkRelationship wR = new WorkRelationship();

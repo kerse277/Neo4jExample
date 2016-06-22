@@ -26,7 +26,7 @@ public interface PersonRepository extends GraphRepository<Person> {
             "RETURN p,n")
     String work ();
 
-    @Query("MATCH p=((:Person{name:'A117'})-[:FRIEND|WORK*1..2]-(:Person{name:'A43'})) return p")
+    @Query("MATCH p=((:Person{name:'A5'})-[:RELATIONSHIP*1..2]-(:Person{name:'A4'})) return p")
     List<Person> matchMetric();
 
 

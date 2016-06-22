@@ -56,7 +56,7 @@ public class PersonRepositoryTest {
             System.out.println(person.getName());
         }
         Random random = new Random();
-
+        String[] friend={"Facebook","Instagram","Work"};
         for (int i = 1; i<=200; i++) {
 
             friendPerson1 = personRepository.findByName("A"+i);
@@ -65,10 +65,11 @@ public class PersonRepositoryTest {
                 int rondomFriend=random.nextInt(199)+1;
                 if (i != rondomFriend){
                     friendPerson2 = personRepository.findByName("A"+rondomFriend);
-                //    friendPerson1.friend(friendPerson2);
-                  //  friendPerson2.friend(friendPerson1);
-                    personRepository.save(friendPerson1);
-                    personRepository.save(friendPerson2);
+                    FriendRelationship fr = new FriendRelationship();
+                    fr.setStartNode(friendPerson1);
+                    fr.setEndNode(friendPerson2);
+                    fr.setFriendType(friend[i%3]);
+                    friendRelationshipRepository.save(fr);
                 }
             }
         }

@@ -26,4 +26,9 @@ public class Places {
     @Setter
     private String type;
 
+    @Override
+    public String toString () {
+        return String.format("Places[id=%s, name='%s', type='%s']", id,
+                name, type);
+    }
 }
