@@ -14,15 +14,6 @@ import java.util.List;
  */
 public interface FriendRelationshipRepository extends GraphRepository<FriendRelationship>, FriendRelationshipRepositoryCustom {
 
-   /* @Query("MATCH p=((:Person{name: {startNode} })-[ :FRIEND*1..8 ]->(:Person{name: {endNode} })) return p limit {limit}")
-    List<FriendRelationship> friendWay(@Param("limit") int limit, @Param("startNode") String startNode,@Param("endNode") String endNode);
-*/
-
-    @Query("MATCH p=((:Person{name: {startNode} })-->()-->()-->()-->()-->()-->(:Person{name: {endNode} }))\n" +
-            "            return p limit 1")
-    List<FriendRelationship> friendWay( @Param("startNode") String startNode, @Param("endNode") String endNode);
-
-
     @Query("MATCH p=((:Person{name: {person} })-[:FRIEND]-()) return p")
     List<FriendRelationship> findFriendAll(@Param("person") String person );
 

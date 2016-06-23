@@ -3,15 +3,10 @@ package com.oguz.sample.repository;
 import com.oguz.sample.relationshipmodel.FriendRelationship;
 import org.neo4j.ogm.model.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.template.Neo4jOperations;
-import org.springframework.data.neo4j.template.Neo4jTemplate;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.ResultSet;
+import java.util.*;
 
 /**
  * Created by oguz on 23.06.2016.
@@ -35,8 +30,11 @@ public class FriendRelationshipRepositoryImpl implements FriendRelationshipRepos
         params.put("endNode", endNode);
         params.put("limit", limit);
 
-        Result result = neo4jOperations.query(query, params);
+        List<FriendRelationship> list = new ArrayList<FriendRelationship>();
 
-        return null;
+        for (FriendRelationship friendRelationship:neo4jOperations.queryForObjects(FriendRelationship.class,query,params)){
+            list.add(friendRelationship);
+        }
+        return list;
     }
 }
