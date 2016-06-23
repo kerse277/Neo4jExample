@@ -2,6 +2,7 @@ package com.oguz.sample.repository;
 
 import com.oguz.sample.model.Person;
 import com.oguz.sample.relationshipmodel.FriendRelationship;
+import org.neo4j.ogm.model.Node;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.GraphRepository;
 import org.springframework.data.repository.query.Param;
@@ -13,8 +14,14 @@ import java.util.List;
  */
 public interface FriendRelationshipRepository extends GraphRepository<FriendRelationship> {
 
-    @Query("MATCH p=((:Person{name: {startNode} })-[ *1..2 ]->(:Person{name: {endNode} })) return p")
-    List<FriendRelationship> friendWay(@Param("startNode") String startNode,@Param("endDegree") Integer degree,@Param("endNode") String endNode);
+   /* @Query("MATCH p=((:Person{name: {startNode} })-[ :FRIEND*1..8 ]->(:Person{name: {endNode} })) return p limit {limit}")
+    List<FriendRelationship> friendWay(@Param("limit") int limit, @Param("startNode") String startNode,@Param("endNode") String endNode);
+*/
+
+    @Query("MATCH p=((:Person{name: {startNode} })-->()-->()-->()-->()-->()-->(:Person{name: {endNode} }))\n" +
+            "            return p limit 1")
+    List<FriendRelationship> friendWay( @Param("startNode") String startNode, @Param("endNode") String endNode);
+
 
     @Query("MATCH p=((:Person{name: {person} })-[:FRIEND]-()) return p")
     List<FriendRelationship> findFriendAll(@Param("person") String person );

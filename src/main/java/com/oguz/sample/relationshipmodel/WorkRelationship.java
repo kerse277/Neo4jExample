@@ -30,5 +30,10 @@ public class WorkRelationship {
     @Setter
     @EndNode
     private Places endNode;
-//
+
+    @Override
+    public String toString () {
+        return String.format("Relation[id=%s, startNode='%s', endNode='%s', type='%s']", id,
+                startNode, endNode,workType);
+    }
 }
