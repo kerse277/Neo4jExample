@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by kerse on 21.06.2016.
  */
-public interface FriendRelationshipRepository extends GraphRepository<FriendRelationship> {
+public interface FriendRelationshipRepository extends GraphRepository<FriendRelationship>, FriendRelationshipRepositoryCustom {
 
    /* @Query("MATCH p=((:Person{name: {startNode} })-[ :FRIEND*1..8 ]->(:Person{name: {endNode} })) return p limit {limit}")
     List<FriendRelationship> friendWay(@Param("limit") int limit, @Param("startNode") String startNode,@Param("endNode") String endNode);
